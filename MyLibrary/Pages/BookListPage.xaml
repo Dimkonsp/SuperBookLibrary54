@@ -1,0 +1,51 @@
+﻿<Page x:Class="MyLibrary.Pages.BookListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyLibrary.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="500"
+      Title="BookListPage" Loaded="Page_Loaded">
+
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="listBook" 
+                  Grid.Row="1" Background="#BF000000" Foreground="#FF3C5993" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Название книги" Width="Auto" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Фамилия автора" Width="150" DisplayMemberBinding="{Binding Author.LastName}"/>
+                    <GridViewColumn Header="Имя автора" Width="150" DisplayMemberBinding="{Binding Author.FirstName}"/>
+                    <GridViewColumn Header="Полка" Width="Auto" DisplayMemberBinding="{Binding Selection.NameSelection}"/>
+                    <GridViewColumn Header="Издательство" Width="Auto" DisplayMemberBinding="{Binding PublishHouse.NamePublishHouse}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <WrapPanel Grid.Row="0" VerticalAlignment="Center" Height="50" Background="#7F000000" >
+            <Label Content="Search" FontSize="20" Margin="0 5 0 0">
+                <Label.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFD1AC8D" Offset="0"/>
+                        <GradientStop Color="#FFEBAF43" Offset="1"/>
+                        <GradientStop Color="#FFF2F7DC" Offset="0.386"/>
+                        <GradientStop Color="#FFFFC8F0" Offset="0.546"/>
+                    </LinearGradientBrush>
+                </Label.Foreground>
+            </Label>
+            <TextBox x:Name="txtSearch" Width="100" Height="30" Style="{DynamicResource TextBoxStyle1}" Margin="0 6 0 0" TextChanged="txtSearch_TextChanged"/>
+            <ComboBox x:Name="cmbSort"
+                      Width="100"
+                      Height="30"
+                      Margin="10 6 10 0"
+                      SelectionChanged="cmbSort_SelectionChanged"/>
+            <Button Content="Add" Width="60" Height="30" Margin="5 6 0 0" Style="{DynamicResource ButtonStyle1}" Foreground="#FFEECB72" Background="{x:Null}" BorderBrush="#FFEECB72" Click="btnAddBook_Click"/>
+            <Button Content="Remove" Width="60" Height="30" Margin="5 6 0 0" Style="{DynamicResource ButtonStyle1}" Foreground="#FFF96B54" Background="{x:Null}" BorderBrush="#FFF96B54" Click="Click_Delete"/>
+            <Button Content="Change" Width="60" Height="30" Margin="5 6 0 0" Style="{DynamicResource ButtonStyle1}" Foreground="#FF2BE4EA" Background="{x:Null}" BorderBrush="#FF2BE4EA" Click="Click_Change"/>
+        </WrapPanel>
+    </Grid>
+</Page>

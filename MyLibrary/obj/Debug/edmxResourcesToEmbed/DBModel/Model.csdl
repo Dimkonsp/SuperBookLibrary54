@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyLibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_Book_Author" FromRole="Author" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDAuthor" Type="Int32" Nullable="false" />
+    <Property Name="IDSection" Type="Int32" Nullable="false" />
+    <Property Name="IDPublishHouse" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Author" Relationship="Self.FK_Book_Author" FromRole="Book" ToRole="Author" />
+    <NavigationProperty Name="PublishHouse" Relationship="Self.FK_Book_PublishHouse" FromRole="Book" ToRole="PublishHouse" />
+    <NavigationProperty Name="Selection" Relationship="Self.FK_Book_Selection" FromRole="Book" ToRole="Selection" />
+    <NavigationProperty Name="BookRental" Relationship="Self.FK_BookRental_Book" FromRole="Book" ToRole="BookRental" />
+    <NavigationProperty Name="Genre" Relationship="Self.BookAndGenre" FromRole="Book" ToRole="Genre" />
+  </EntityType>
+  <EntityType Name="BookRental">
+    <Key>
+      <PropertyRef Name="IDReader" />
+      <PropertyRef Name="IDBook" />
+    </Key>
+    <Property Name="IDReader" Type="Int32" Nullable="false" />
+    <Property Name="IDBook" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IDEmplovee" Type="Int32" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_BookRental_Book" FromRole="BookRental" ToRole="Book" />
+    <NavigationProperty Name="Emplovee" Relationship="Self.FK_BookRental_Emplovee" FromRole="BookRental" ToRole="Emplovee" />
+    <NavigationProperty Name="Reader" Relationship="Self.FK_BookRental_Reader" FromRole="BookRental" ToRole="Reader" />
+  </EntityType>
+  <EntityType Name="Emplovee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookRental" Relationship="Self.FK_BookRental_Emplovee" FromRole="Emplovee" ToRole="BookRental" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameGender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Reader" Relationship="Self.FK_Reader_Gender" FromRole="Gender" ToRole="Reader" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameGenre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.BookAndGenre" FromRole="Genre" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="PublishHouse">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePublishHouse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_Book_PublishHouse" FromRole="PublishHouse" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="Reader">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDGender" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookRental" Relationship="Self.FK_BookRental_Reader" FromRole="Reader" ToRole="BookRental" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Reader_Gender" FromRole="Reader" ToRole="Gender" />
+  </EntityType>
+  <EntityType Name="Selection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameSelection" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_Book_Selection" FromRole="Selection" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Book_Author">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="IDAuthor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_PublishHouse">
+    <End Role="PublishHouse" Type="Self.PublishHouse" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PublishHouse">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="IDPublishHouse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_Selection">
+    <End Role="Selection" Type="Self.Selection" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Selection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="IDSection" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRental_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookRental" Type="Self.BookRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BookRental">
+        <PropertyRef Name="IDBook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRental_Emplovee">
+    <End Role="Emplovee" Type="Self.Emplovee" Multiplicity="0..1" />
+    <End Role="BookRental" Type="Self.BookRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emplovee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BookRental">
+        <PropertyRef Name="IDEmplovee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookRental_Reader">
+    <End Role="Reader" Type="Self.Reader" Multiplicity="1" />
+    <End Role="BookRental" Type="Self.BookRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reader">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BookRental">
+        <PropertyRef Name="IDReader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reader_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Reader">
+        <PropertyRef Name="IDGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookAndGenre">
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Author" EntityType="Self.Author" />
+    <EntitySet Name="Book" EntityType="Self.Book" />
+    <EntitySet Name="BookRental" EntityType="Self.BookRental" />
+    <EntitySet Name="Emplovee" EntityType="Self.Emplovee" />
+    <EntitySet Name="Gender" EntityType="Self.Gender" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" />
+    <EntitySet Name="PublishHouse" EntityType="Self.PublishHouse" />
+    <EntitySet Name="Reader" EntityType="Self.Reader" />
+    <EntitySet Name="Selection" EntityType="Self.Selection" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Book_Author" Association="Self.FK_Book_Author">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_PublishHouse" Association="Self.FK_Book_PublishHouse">
+      <End Role="PublishHouse" EntitySet="PublishHouse" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_Selection" Association="Self.FK_Book_Selection">
+      <End Role="Selection" EntitySet="Selection" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRental_Book" Association="Self.FK_BookRental_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookRental" EntitySet="BookRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRental_Emplovee" Association="Self.FK_BookRental_Emplovee">
+      <End Role="Emplovee" EntitySet="Emplovee" />
+      <End Role="BookRental" EntitySet="BookRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookRental_Reader" Association="Self.FK_BookRental_Reader">
+      <End Role="Reader" EntitySet="Reader" />
+      <End Role="BookRental" EntitySet="BookRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reader_Gender" Association="Self.FK_Reader_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Reader" EntitySet="Reader" />
+    </AssociationSet>
+    <AssociationSet Name="BookAndGenre" Association="Self.BookAndGenre">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Genre" EntitySet="Genre" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MyLibraryModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MyLibraryModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
