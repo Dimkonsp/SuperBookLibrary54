@@ -4,11 +4,11 @@
 
 Приложение для просмотра и выдачи книг
 
-![2022-03-28 22-29-23](https://user-images.githubusercontent.com/80574891/160472793-f8c17509-455f-467a-9441-62e33970d8a7.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/86299959/162803241-886b3d1b-19db-4218-97f7-325f81aeb472.gif)
 
 меню где можно авбрать нужный список(Список Книг,список Выдач,список Читателей)
 
-![2022-03-28 22-29-38](https://user-images.githubusercontent.com/80574891/160473907-e023cf04-ab73-4f96-9b81-c6fd5382d15e.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/86299959/162803273-a3d7dbff-7543-4ebe-947b-2dfe4537054c.gif)
 Добавление книги:
 
 ![image](https://user-images.githubusercontent.com/80574891/158700365-203d0743-3cd5-4cca-953c-bf43d819ff65.png)
@@ -21,6 +21,6 @@
 
 ![image](https://user-images.githubusercontent.com/80574891/158700585-ec907fa7-dde8-4a59-af2a-9237f6cb20b0.png)
 Сдача книги:
-![2022-03-28 22-53-10](https://user-images.githubusercontent.com/80574891/160476364-d3116773-5c41-444a-a6f6-f7d801216e2e.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/86299959/162803302-03776d4f-0dbc-4289-9bc9-b41875c9a059.gif)
 
 # SuperBookLibrary54
