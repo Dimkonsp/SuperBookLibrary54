@@ -20,7 +20,9 @@
 Добавление Выдачи:
 
 ![image](https://user-images.githubusercontent.com/80574891/158700585-ec907fa7-dde8-4a59-af2a-9237f6cb20b0.png)
+
 Сдача книги:
+
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/86299959/162803302-03776d4f-0dbc-4289-9bc9-b41875c9a059.gif)
 
 # SuperBookLibrary54
